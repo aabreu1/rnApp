@@ -12,15 +12,35 @@ import {
   View, 
   Button
 } from 'react-native';
+
 import ComponenteNuevo from './ComponenteNuevo'
+
+export class Cargando extends Component{
+  render(){
+      return(
+        <Text style={styles.blanco}> CARGANDO</Text>
+      )
+  }
+}
 
 export class CompHijo extends Component{
   render(){
+    
+    if (this.props.result){
+      var  res = this.props.result.map((item, i) => {
+        return(
+          <Text key={i}>{item.title}</Text>
+        )
+      })
+    }else{
+       { return (<Cargando/>) } 
+    }
     return(
-      <View>
+      <View> 
+        {res}
         <View style={this.props.status ? styles.on : styles.off} />
       </View>
-    );
+    )
   }
 }
 
@@ -28,8 +48,20 @@ export default class rnApp extends Component {
 
   constructor(){
     super();
-    this.state = {status: false}
+    this.state = {
+      status: false,
+      data: null
+    }
 
+  }
+  componentDidMount(){
+    fetch('https://facebook.github.io/react-native/movies.json')
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        data: responseJson.movies
+      })
+    })
   }
 
   clicked(){
@@ -42,16 +74,12 @@ export default class rnApp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        
-        <CompHijo status={this.state.status}/>
-       
+        <CompHijo status={this.state.status} result={this.state.data}/>
         <Button 
           onPress={this.clicked.bind(this)} 
           title= 'Bite me ;)'
           color= 'green' 
         />
-
-
       </View>
 
     );
@@ -62,12 +90,12 @@ const styles = StyleSheet.create({
   on: {
     width:100,
     height:100,
-    backgroundColor: 'yellow'
+    backgroundColor: 'red'
   },
   off:{
     width:100,
     height:100,
-    backgroundColor: 'black'
+    backgroundColor: 'white'
   },
   container: {
     flex: 1,
@@ -85,6 +113,9 @@ const styles = StyleSheet.create({
     color: '#333333',
     marginBottom: 5,
   },
+  blanco:{
+    color: 'white'
+  }
 });
 
 AppRegistry.registerComponent('rnApp', () => rnApp);
