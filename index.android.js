@@ -10,47 +10,22 @@ import {
   StyleSheet,
   Text,
   View, 
-  Button
+  Button,
+  ListView
 } from 'react-native';
 
-import ComponenteNuevo from './ComponenteNuevo'
 
-export class Cargando extends Component{
-  render(){
-      return(
-        <Text style={styles.blanco}> CARGANDO</Text>
-      )
-  }
-}
-
-export class CompHijo extends Component{
-  render(){
-    
-    if (this.props.result){
-      var  res = this.props.result.map((item, i) => {
-        return(
-          <Text key={i}>{item.title}</Text>
-        )
-      })
-    }else{
-       { return (<Cargando/>) } 
-    }
-    return(
-      <View> 
-        {res}
-        <View style={this.props.status ? styles.on : styles.off} />
-      </View>
-    )
-  }
-}
 
 export default class rnApp extends Component {
 
   constructor(){
     super();
+
+    var dataS = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2 })
     this.state = {
       status: false,
-      data: null
+      data: null,
+      dataSource: dataS.cloneWithRows([])
     }
 
   }
@@ -74,12 +49,6 @@ export default class rnApp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <CompHijo status={this.state.status} result={this.state.data}/>
-        <Button 
-          onPress={this.clicked.bind(this)} 
-          title= 'Bite me ;)'
-          color= 'green' 
-        />
       </View>
 
     );
