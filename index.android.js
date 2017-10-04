@@ -11,7 +11,9 @@ import {
   Text,
   View, 
   Button,
-  ListView
+  ListView,
+  TouchableHighlight,
+  Alert
 } from 'react-native';
 
 
@@ -21,7 +23,7 @@ export default class rnApp extends Component {
   constructor(){
     super();
 
-    var dataS = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 != r2 })
+    var dataS = new ListView.DataSource({rowHasChanged: (rowOld, rowNew) => rowOld != rowNew })
     this.state = {
       status: false,
       data: null,
@@ -30,47 +32,61 @@ export default class rnApp extends Component {
 
   }
   componentDidMount(){
+    var titles = [];
     fetch('https://facebook.github.io/react-native/movies.json')
     .then((response) => response.json())
     .then((responseJson) => {
+      var movies = responseJson.movies;
+      for(var i= 0; i < movies.length; i++){
+        titles.push(movies[i].title);
+      }
       this.setState({
-        data: responseJson.movies
+        dataSource: this.state.dataSource.cloneWithRows(titles)
       })
     })
   }
 
-  clicked(){
-    this.setState({
-      status: !this.state.status
-    })
-  }
-
-
   render() {
     return (
       <View style={styles.container}>
+        <ListView 
+          enableEmptySections={true} 
+          dataSource={this.state.dataSource} 
+          renderRow={this.renderRow.bind(this)}
+        />
       </View>
 
     );
   }
+  pressCell(dataRow){
+    Alert.alert(dataRow);
+  }
+
+  renderRow(dataRow) {
+    return(
+      <TouchableHighlight onPress={() => this.pressCell(dataRow)}>
+        <View style = {styles.cell}>
+          <Text>{dataRow}</Text>
+        </View>
+      </TouchableHighlight>
+    )
+  }
+
 }
 
 const styles = StyleSheet.create({
-  on: {
-    width:100,
-    height:100,
-    backgroundColor: 'red'
-  },
-  off:{
-    width:100,
-    height:100,
-    backgroundColor: 'white'
+  cell: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'grey',
+    paddingTop: 20,
+    paddingBottom: 20,
+    alignItems: 'center'
+
   },
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'cyan',
+    paddingTop: 20
   },
   welcome: {
     fontSize: 20,

@@ -1,2 +1,2 @@
 # rnApp
-pactica de app utilizando react-native
+practica de app utilizando react-native
