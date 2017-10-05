@@ -13,12 +13,25 @@ import {
   Button,
   ListView,
   TouchableHighlight,
-  Alert
+  Alert,
+  NavigatorIOS
 } from 'react-native';
 
-
-
 export default class rnApp extends Component {
+  render() {
+    return (
+      <NavigatorIOS
+        initialRoute={{
+          component: listViewMovie,
+          title: "Lista de Peliculas"
+        }}
+          style = {{flex: 1}}
+        />
+    );
+  }
+}
+
+export class listViewMovie extends Component {
 
   constructor(){
     super();
@@ -59,9 +72,12 @@ export default class rnApp extends Component {
     );
   }
   pressCell(dataRow){
-    Alert.alert(dataRow);
+    this.props.Navigator.push({
+      component: newView,
+      passProps: {dataRow},
+      title: 'Detalles de la lista'
+    })
   }
-
   renderRow(dataRow) {
     return(
       <TouchableHighlight onPress={() => this.pressCell(dataRow)}>
@@ -74,14 +90,27 @@ export default class rnApp extends Component {
 
 }
 
+
+export class newView extends Component{
+  render(){
+    return(
+      <View style={styles.containerDetails}>
+        <Text>(this.props.dataRow)</Text>
+      </View>
+    )
+  }
+}
+
 const styles = StyleSheet.create({
+  containerDetails:{
+    paddingTop:80
+  },
   cell: {
     borderBottomWidth: 1,
     borderBottomColor: 'grey',
     paddingTop: 20,
     paddingBottom: 20,
     alignItems: 'center'
-
   },
   container: {
     flex: 1,
