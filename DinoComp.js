@@ -15,11 +15,11 @@ export default class DinoComp extends Component {
             <Text>props in react Native - Andres Abreu</Text>
             <Image
                 source={
-                    {uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Marasuchus.JPG/800px-Marasuchus.JPG"}
+                    {uri:"https://images-na.ssl-images-amazon.com/images/I/518uHeDmZKL._SL1024_.jpg"}
                 }
         
                 style={
-                    {width: 350, height: 190}
+                    {width: 190, height: 190}
                 }
                 
             />
@@ -27,4 +27,4 @@ export default class DinoComp extends Component {
         );
     }
 }
-AppRegistry.registerComponent('rnApp', () => DinoComp);
+//AppRegistry.registerComponent('rnApp', () => DinoComp);
