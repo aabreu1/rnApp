@@ -1,35 +1,36 @@
 import React, { Component } from 'react';
 import {
     AppRegistry,
-    StyleSheet,
     Text,
-    View,
-    Image
- 
+    View
 } from 'react-native';
 
-export default class DinoComp extends Component {
+
+
+class Blink extends Component{
+    constructor(props){
+        super(props);
+        this.state = {isShownText: true};
+
+    }
+    
     render(){
-          let myImage = {uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/1c/Marasuchus.JPG/800px-Marasuchus.JPG"};
-          let size    = {width: 365, height: 190};
         return(
-        <View>
-            <Drescription contenido = "Raptor"/>
-            <Image
-                source={myImage}
-                style={size}
-            />
-        </View>
+            <Text>{this.state.isShownText ? this.state.textContent : ''}</Text>
+
+        );
+    }
+
+}
+
+export default class BlinkApp extends Component {
+    render(){
+        return(        
+            <Blink textContent = "Blink"/>
         );
     }
 }
 
-class Description extends Component{
-      render(){
-        return(
-          <Text>Squeleton's {this.props.contenido}</Text>
-        );
-      }
-    }
 
-AppRegistry.registerComponent('rnApp', () => DinoComp);
+
+AppRegistry.registerComponent('rnApp', () => BlinkApp);
