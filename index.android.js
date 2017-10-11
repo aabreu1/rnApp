@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     AppRegistry,
     Text,
-    View
+    View,
+    StatusBar
 } from 'react-native';
 
 
@@ -25,8 +26,10 @@ class Blink extends Component{
     
     render(){
         return(
+            <View>
+            <StatusBar hidden={true}/>
             <Text>{this.state.isShownText ? this.props.textContent : ''}</Text>
-
+            </View>
         );
     }
 
