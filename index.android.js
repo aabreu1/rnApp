@@ -11,12 +11,21 @@ class Blink extends Component{
     constructor(props){
         super(props);
         this.state = {isShownText: true};
+        setInterval(
+            ()=> {
+                this.setState(previousState=>{
+                    return {isShownText: !previousState.isShownText}
+                });
+
+            },
+            500
+        )
 
     }
     
     render(){
         return(
-            <Text>{this.state.isShownText ? this.state.textContent : ''}</Text>
+            <Text>{this.state.isShownText ? this.props.textContent : ''}</Text>
 
         );
     }
