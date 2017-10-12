@@ -4,57 +4,45 @@ import {
     Text,
     View,
     StatusBar,
-    TextInput
+    TextInput,
+    Button,
+    Alert,
+    ToastAndroid,
+    StyleSheet
 } from 'react-native';
 
-export default class  BlinkApp extends Component{
+export default class  TouchesApp extends Component{
     constructor(props){
         super(props)
-        this.state = { text: ""}
     }
-    hadleChangeText=(typedText)=>{
-        this.setState({text: typedText});
+    handlePressButton = () => {
+        ToastAndroid.showWithGravity('All Your Base Are Belong To Us', ToastAndroid.SHORT, ToastAndroid.CENTER);
     }
+
     render(){
         return(
-            <View style= {{
-                padding: 10
-            }}>
-
-            <TextInput
-                style={
-                    {
-                        height: 50
-                    }
-                }
-
-                placeholder = "placeholder text"
-                onChangeText={
-                    (typedText) => { this.setState({text: typedText})}
-                }
-                value={this.state.text}
-            />
-
-            <Text
-                style={
-                    {
-                        padding: 20,
-                        fontSize: 30
-                    }
-            }>
-            You type. {this.state.text}
-            </Text>
-            <StatusBar hidden={true}/>
-                
+            <View style = {styles.container}>
+                <StatusBar hidden={true}/>
+                <Button style = {styles.insideButton}  onPress= {this.handlePressButton}
+                    title="TAP ME"
+                />
             </View>
-
-
         );
     }
-
 }
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center'
+    },
+    insideButton:{
+        margin: 20,
+        justifyContent: 'center'
+    }
+} );
 
 
 
-AppRegistry.registerComponent('rnApp', () => BlinkApp);
+
+AppRegistry.registerComponent('rnApp', () => TouchesApp);
