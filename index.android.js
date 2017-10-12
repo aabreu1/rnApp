@@ -4,49 +4,46 @@ import {
     Text,
     View,
     StatusBar,
-    TextInput,
-    Button,
-    Alert,
-    ToastAndroid,
-    StyleSheet,
-    TouchableHighlight
+    ScrollView,
+    Image
 } from 'react-native';
 
-export default class  TouchesApp extends Component{
+export default class  ScrollerApp extends Component{
     constructor(props){
         super(props)
     }
-    handlePressButton = () => {
-        ToastAndroid.showWithGravity('All Your Base Are Belong To Us', ToastAndroid.SHORT, ToastAndroid.CENTER);
-    }
-
     render(){
         return(
-            <View style = {styles.container}>
+            <ScrollView horizontal= {true}>
                 <StatusBar hidden={true}/>
-                <TouchableHighlight
-                    style = {styles.insideButton}  
-                    onPress= {this.handlePressButton}
-                    underlayColor='red'>
-                     <Text> TouchableHL </Text>
-                    </TouchableHighlight>
-            </View>
+                <Text style={{
+                    fontSize: 30,
+                    padding:20,
+                    backgroundColor: 'red'
+                }}>
+                    This is a text in a scrollView
+                </Text>
+                <Text style={{
+                    fontSize: 30,
+                    padding:20,
+                    backgroundColor: 'green'
+                }}>
+                    This is second text
+                </Text>
+                <Text style={{fontSize:96}}>What's the best</Text>
+                <Text style={{fontSize:96}}>What's the best</Text>
+                <Text style={{fontSize:96}}>What's the best</Text>
+
+
+
+            </ScrollView>
         );
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center'
-    },
-    insideButton:{
-        margin: 20,
-        justifyContent: 'center'
-    }
-} );
 
 
 
 
-AppRegistry.registerComponent('rnApp', () => TouchesApp);
+
+AppRegistry.registerComponent('rnApp', () => ScrollerApp);
