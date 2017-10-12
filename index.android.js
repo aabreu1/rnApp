@@ -4,45 +4,36 @@ import {
     Text,
     View,
     StatusBar,
-    FlatList
+    FlatList,
+    SectionList
 } from 'react-native';
 
-export default class  FlatListApp extends Component{
+export default class  SectionListApp extends Component{
     constructor(props){
         super(props)
     }
     render(){
-        var days = [
-            {key: "monday"},
-            {key: "tuesday"},
-            {key: "wetnessday"},
-            {key: "thursday"},
-            {key: "friday"},
-            {key: "saturday"},
-            {key: "sunday"},
-            {key: "enero"},
-            {key: "febrero"},
-            {key: "marzo"},
-            {key: "abril"},
-            {key: "mayo"},
-            {key: "junio"},
-            {key: "julio"},
-            {key: "agosto"},
-            {key: "septiembre"},
-
+        var data = [
+            {title: "A", data: ["Alexander", "Alan Turing"], key: "A"},
+            {title: "B", data: ["Barbara", "Brooke", "Brenda"], key: "B"},
+            {title: "C", data: ["David", "Dylan", "Diego", "Dakota"], key: "D"},
         ];
         return(
             <View style= {{ flex:1}}>
                 <StatusBar hidden={true}/>
 
-                <FlatList
-                    data = {days}
-                    renderItem = {({item}) => <Text 
+                <SectionList
+                    sections = {data}
+                    renderItem = {({item}) => 
+                    <Text 
                     style = {{ marginBottom: 10, fontSize: 40, height: 50, backgroundColor: 'lightblue'}}
-                    > {item.key} </Text>}
-                    
+                    > {item} </Text>}
+                    renderSectionHeader={
+                        ({section}) => <Text>{section.title}</Text>
+
+                    }
                 >
-                </FlatList>
+                </SectionList>
             </View>
         );
     }
@@ -53,4 +44,4 @@ export default class  FlatListApp extends Component{
 
 
 
-AppRegistry.registerComponent('rnApp', () => FlatListApp);
+AppRegistry.registerComponent('rnApp', () => SectionListApp);
