@@ -4,39 +4,46 @@ import {
     Text,
     View,
     StatusBar,
-    ScrollView,
-    Image
+    FlatList
 } from 'react-native';
 
-export default class  ScrollerApp extends Component{
+export default class  FlatListApp extends Component{
     constructor(props){
         super(props)
     }
     render(){
+        var days = [
+            {key: "monday"},
+            {key: "tuesday"},
+            {key: "wetnessday"},
+            {key: "thursday"},
+            {key: "friday"},
+            {key: "saturday"},
+            {key: "sunday"},
+            {key: "enero"},
+            {key: "febrero"},
+            {key: "marzo"},
+            {key: "abril"},
+            {key: "mayo"},
+            {key: "junio"},
+            {key: "julio"},
+            {key: "agosto"},
+            {key: "septiembre"},
+
+        ];
         return(
-            <ScrollView horizontal= {true}>
+            <View style= {{ flex:1}}>
                 <StatusBar hidden={true}/>
-                <Text style={{
-                    fontSize: 30,
-                    padding:20,
-                    backgroundColor: 'red'
-                }}>
-                    This is a text in a scrollView
-                </Text>
-                <Text style={{
-                    fontSize: 30,
-                    padding:20,
-                    backgroundColor: 'green'
-                }}>
-                    This is second text
-                </Text>
-                <Text style={{fontSize:96}}>What's the best</Text>
-                <Text style={{fontSize:96}}>What's the best</Text>
-                <Text style={{fontSize:96}}>What's the best</Text>
 
-
-
-            </ScrollView>
+                <FlatList
+                    data = {days}
+                    renderItem = {({item}) => <Text 
+                    style = {{ marginBottom: 10, fontSize: 40, height: 50, backgroundColor: 'lightblue'}}
+                    > {item.key} </Text>}
+                    
+                >
+                </FlatList>
+            </View>
         );
     }
 }
@@ -46,4 +53,4 @@ export default class  ScrollerApp extends Component{
 
 
 
-AppRegistry.registerComponent('rnApp', () => ScrollerApp);
+AppRegistry.registerComponent('rnApp', () => FlatListApp);
