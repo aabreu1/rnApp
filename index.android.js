@@ -3,33 +3,49 @@ import {
     AppRegistry,
     Text,
     View,
-    StatusBar
+    StatusBar,
+    TextInput
 } from 'react-native';
 
-class Blink extends Component{
+export default class  BlinkApp extends Component{
+    constructor(props){
+        super(props)
+        this.state = { text: ""}
+    }
+    hadleChangeText=(typedText)=>{
+        this.setState({text: typedText});
+    }
     render(){
         return(
-            <View style={{
-                flex : 1,
-                flexDirection : 'row',
-                justifyContent: 'space-around',
-                alignItems: 'center'
-                }}>
+            <View style= {{
+                padding: 10
+            }}>
+
+            <TextInput
+                style={
+                    {
+                        height: 50
+                    }
+                }
+
+                placeholder = "placeholder text"
+                onChangeText={
+                    (typedText) => { this.setState({text: typedText})}
+                }
+                value={this.state.text}
+            />
+
+            <Text
+                style={
+                    {
+                        padding: 20,
+                        fontSize: 30
+                    }
+            }>
+            You type. {this.state.text}
+            </Text>
             <StatusBar hidden={true}/>
-                <View style={{
-                    width: 60,
-                    height: 60,
-                    backgroundColor: 'yellow'}}/>
-
-                <View style={{
-                    width: 60,
-                    height: 60,
-                    backgroundColor: 'blue'}}/>
-
-                <View style={{
-                    width: 60,
-                    height: 60,
-                    backgroundColor: 'red'}}/>
+                
             </View>
 
 
