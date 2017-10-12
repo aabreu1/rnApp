@@ -8,7 +8,8 @@ import {
     Button,
     Alert,
     ToastAndroid,
-    StyleSheet
+    StyleSheet,
+    TouchableHighlight
 } from 'react-native';
 
 export default class  TouchesApp extends Component{
@@ -23,9 +24,12 @@ export default class  TouchesApp extends Component{
         return(
             <View style = {styles.container}>
                 <StatusBar hidden={true}/>
-                <Button style = {styles.insideButton}  onPress= {this.handlePressButton}
-                    title="TAP ME"
-                />
+                <TouchableHighlight
+                    style = {styles.insideButton}  
+                    onPress= {this.handlePressButton}
+                    underlayColor='red'>
+                     <Text> TouchableHL </Text>
+                    </TouchableHighlight>
             </View>
         );
     }
