@@ -6,42 +6,38 @@ import {
     StatusBar
 } from 'react-native';
 
-
-
 class Blink extends Component{
-    constructor(props){
-        super(props);
-        this.state = {isShownText: true};
-        setInterval(
-            ()=> {
-                this.setState(previousState=>{
-                    return {isShownText: !previousState.isShownText}
-                });
-
-            },
-            500
-        )
-
-    }
-    
     render(){
         return(
-            <View>
+            <View style={{
+                flex : 1,
+                flexDirection : 'row',
+                justifyContent: 'space-around',
+                alignItems: 'center'
+                }}>
             <StatusBar hidden={true}/>
-            <Text>{this.state.isShownText ? this.props.textContent : ''}</Text>
+                <View style={{
+                    width: 60,
+                    height: 60,
+                    backgroundColor: 'yellow'}}/>
+
+                <View style={{
+                    width: 60,
+                    height: 60,
+                    backgroundColor: 'blue'}}/>
+
+                <View style={{
+                    width: 60,
+                    height: 60,
+                    backgroundColor: 'red'}}/>
             </View>
+
+
         );
     }
 
 }
 
-export default class BlinkApp extends Component {
-    render(){
-        return(        
-            <Blink textContent = "Blink"/>
-        );
-    }
-}
 
 
 
