@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, VIew, Button} from 'react-native';
+import {Text, View, Button} from 'react-native';
 const util = require('util');
 
 export default class FirstScreen extends React.Component {
@@ -7,15 +7,11 @@ export default class FirstScreen extends React.Component {
         title:  'First screen'
     };
     render(){
+        console.log("this.props.navigation = " +util.inspect(this.props.navigation, false, null))     
         return(
             <View>
                 <Text> This is screen 1</Text>
-                <Button
-                   // onPress={
 
-                   // }
-                    tittle = 'Go to screen 2'
-                />
             </View>
 
         );
