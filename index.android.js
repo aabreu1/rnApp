@@ -5,19 +5,15 @@ import {
     Text
 } from 'react-native';
 
-import {TabNavigator} from 'react-navigation';
+import {StackNavigator} from 'react-navigation';
 import FirstScreen from './screen/FirstScreen'
 import SecondScreen from './screen/SecondScreen'
 
-var Navigation = TabNavigator({
+const Navigation = StackNavigator({
     
     First: {screen: FirstScreen},
     Second: {screen: SecondScreen}
 });
-
-Navigation.navigationOptions = {
-    title: "Tab example"
-};
 
 //expor navigator as the root component
 //export default  Navigation;

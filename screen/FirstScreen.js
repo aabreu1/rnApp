@@ -7,11 +7,17 @@ export default class FirstScreen extends React.Component {
         title:  'First screen'
     };
     render(){
-        console.log("this.props.navigation = " +util.inspect(this.props.navigation, false, null))     
+        console.log("this.props.navigation = " +util.inspect(this.props.navigation, false, null))
+        
         return(
             <View>
                 <Text> This is screen 1</Text>
-
+                <Button
+                    onPress={
+                        ()=> navigate("Second", {name: "Andres", email: "aabreu1"})
+                    }
+                    title = "Go to screen 2"
+                />
             </View>
 
         );
